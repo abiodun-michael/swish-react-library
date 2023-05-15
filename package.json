@@ -1,12 +1,11 @@
 {
   "name": "swish-react-library",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "license": "MIT",
   "author": "Abiodun Michael",
-  "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
