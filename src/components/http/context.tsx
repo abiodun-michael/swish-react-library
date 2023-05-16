@@ -65,7 +65,6 @@ const HttpProvider = ({ children, config, interceptors }: Props) => {
 
   return (
     <HttpContext.Provider value={{ instance, networkStatus: isOnline ? 'online' : 'offline' }}>
-      <p>Hello to the world</p>
       {children}
     </HttpContext.Provider>
   )
