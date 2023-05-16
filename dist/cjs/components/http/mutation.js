@@ -9,11 +9,18 @@ var useMutation = function (url, config) {
     var _b = (0, react_1.useState)({}), data = _b[0], setData = _b[1];
     var _c = (0, react_1.useState)(false), loading = _c[0], setLoading = _c[1];
     var _d = (0, react_1.useContext)(context_1.HttpContext), instance = _d.instance, networkStatus = _d.networkStatus;
-    var handle = function () {
+    var handle = function (variables) {
         return new Promise(function (resolve, reject) {
             setLoading(true);
+            var variableData = {};
+            if (variables) {
+                variableData = variables;
+            }
+            else {
+                variableData = config.data;
+            }
             instance
-                .request(tslib_1.__assign({ url: url, method: 'POST' }, config))
+                .request(tslib_1.__assign(tslib_1.__assign({ url: url, method: 'POST' }, config), { data: variableData }))
                 .then(function (_a) {
                 var data = _a.data;
                 if (config.onCompleted !== undefined) {

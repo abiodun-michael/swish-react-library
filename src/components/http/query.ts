@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from 'react'
 import { HttpContext } from './context'
 import { MutationProp } from './types'
 
-export const useQuery = (url: string, config: MutationProp) => {
+export const useQuery = (url: string, config?: MutationProp) => {
   const [error, setError] = useState(null)
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(false)
@@ -12,17 +12,12 @@ export const useQuery = (url: string, config: MutationProp) => {
   const handle = useCallback(() => {
     setLoading(true)
 
-    let variableData = {}
-    if (config.data) {
-      variableData = config.data
-    }
-
     instance
       .request({
         url,
         method: 'GET',
         ...config,
-        data: variableData,
+        data: config?.variables
       })
       .then((response) => {
         setData(response?.data)

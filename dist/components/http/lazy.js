@@ -6,11 +6,18 @@ export var useLazyQuery = function (url, config) {
     var _b = useState({}), data = _b[0], setData = _b[1];
     var _c = useState(false), loading = _c[0], setLoading = _c[1];
     var _d = useContext(HttpContext), instance = _d.instance, networkStatus = _d.networkStatus;
-    var handle = function () {
+    var handle = function (variables) {
         return new Promise(function (resolve, reject) {
             setLoading(true);
+            var variableData = {};
+            if (variables) {
+                variableData = variables;
+            }
+            else {
+                variableData = config.data;
+            }
             instance
-                .request(__assign({ url: url, method: 'GET' }, config))
+                .request(__assign(__assign({ url: url, method: 'GET' }, config), { data: variableData }))
                 .then(function (response) {
                 setData(response === null || response === void 0 ? void 0 : response.data);
                 if (config.onCompleted !== undefined) {

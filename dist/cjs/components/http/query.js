@@ -11,8 +11,12 @@ var useQuery = function (url, config) {
     var _d = (0, react_1.useContext)(context_1.HttpContext), instance = _d.instance, networkStatus = _d.networkStatus;
     var handle = (0, react_1.useCallback)(function () {
         setLoading(true);
+        var variableData = {};
+        if (config.data) {
+            variableData = config.data;
+        }
         instance
-            .request(tslib_1.__assign({ url: url, method: 'GET' }, config))
+            .request(tslib_1.__assign(tslib_1.__assign({ url: url, method: 'GET' }, config), { data: variableData }))
             .then(function (response) {
             setData(response === null || response === void 0 ? void 0 : response.data);
         })
