@@ -8467,9 +8467,9 @@ svgo@^2.7.0:
     stable "^0.1.8"
 
 swish-react-library@^1.0.6:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/swish-react-library/-/swish-react-library-1.0.5.tgz#db516646e975cdfe8dcae2abb1253b31c18ff636"
-  integrity sha512-prC659Vb59T94VoiM+3mvaT1kKkZiZhdi9ppBl84bX4cXltx+b7yVMWQNFOKfaN89aOlgXdcgiKwZZGPpzLbKQ==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/swish-react-library/-/swish-react-library-1.0.6.tgz#6ac2e624f72a645c7740c689d0b807e02a0e7fff"
+  integrity sha512-5ZMJkBWV/0DRDTNx2JZ8VhlQ+kU449sgyb2UDQjWd1atZ/SHWUPknsbEqdNSEovkD4Rr1mD0S09Z4f+WBsGXVg==
   dependencies:
     "@testing-library/jest-dom" "^5.14.1"
     "@testing-library/react" "^13.0.0"
@@ -8483,6 +8483,7 @@ swish-react-library@^1.0.6:
     react "^18.2.0"
     react-dom "^18.2.0"
     react-scripts "5.0.1"
+    source-map-loader "^4.0.1"
     typescript "^5.0.4"
 
 symbol-tree@^3.2.4:
