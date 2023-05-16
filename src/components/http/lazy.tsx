@@ -9,14 +9,23 @@ export const useLazyQuery = (url: string, config: MutationProp) => {
 
   const { instance, networkStatus } = useContext(HttpContext)
 
-  const handle = () => {
+  const handle = (variables: unknown) => {
     return new Promise((resolve, reject) => {
       setLoading(true)
+
+      let variableData = {}
+      if (variables) {
+        variableData = variables
+      } else {
+        variableData = config.data
+      }
+
       instance
         .request({
           url,
           method: 'GET',
           ...config,
+          data: variableData,
         })
         .then((response) => {
           setData(response?.data)

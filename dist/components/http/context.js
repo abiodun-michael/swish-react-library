@@ -7,7 +7,7 @@ var defaultValue = {
 export var HttpContext = createContext(defaultValue);
 var HttpProvider = function (_a) {
     var children = _a.children, config = _a.config, interceptors = _a.interceptors;
-    var _b = useState(navigator.onLine), isOnline = _b[0], setIsOnline = _b[1];
+    var _b = useState(false), isOnline = _b[0], setIsOnline = _b[1];
     var _c = useState(function () { return defaultValue.instance; }), instance = _c[0], setInstance = _c[1];
     var initialize = useCallback(function () {
         var axiosInstance = axios.create(config);

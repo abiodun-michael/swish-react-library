@@ -11,7 +11,7 @@ var defaultValue = {
 exports.HttpContext = (0, react_1.createContext)(defaultValue);
 var HttpProvider = function (_a) {
     var children = _a.children, config = _a.config, interceptors = _a.interceptors;
-    var _b = (0, react_1.useState)(navigator.onLine), isOnline = _b[0], setIsOnline = _b[1];
+    var _b = (0, react_1.useState)(false), isOnline = _b[0], setIsOnline = _b[1];
     var _c = (0, react_1.useState)(function () { return defaultValue.instance; }), instance = _c[0], setInstance = _c[1];
     var initialize = (0, react_1.useCallback)(function () {
         var axiosInstance = axios_1.default.create(config);

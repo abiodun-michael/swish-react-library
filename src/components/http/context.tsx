@@ -10,7 +10,7 @@ const defaultValue = {
 export const HttpContext = createContext(defaultValue)
 
 const HttpProvider = ({ children, config, interceptors }: Props) => {
-  const [isOnline, setIsOnline] = useState(navigator.onLine)
+  const [isOnline, setIsOnline] = useState(false)
   const [instance, setInstance] = useState(() => defaultValue.instance)
 
   const initialize = useCallback(() => {
