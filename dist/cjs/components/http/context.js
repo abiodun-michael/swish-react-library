@@ -13,7 +13,7 @@ var HttpProvider = function (_a) {
     var children = _a.children, config = _a.config, interceptors = _a.interceptors;
     var _b = (0, react_1.useState)(navigator.onLine), isOnline = _b[0], setIsOnline = _b[1];
     var _c = (0, react_1.useState)(function () { return defaultValue.instance; }), instance = _c[0], setInstance = _c[1];
-    var initialize = function () {
+    var initialize = (0, react_1.useCallback)(function () {
         var axiosInstance = axios_1.default.create(config);
         axiosInstance.interceptors.request.use(function (reqConfig) {
             if (interceptors === null || interceptors === void 0 ? void 0 : interceptors.request)
@@ -34,7 +34,7 @@ var HttpProvider = function (_a) {
             return error;
         });
         setInstance(function () { return axiosInstance; });
-    };
+    }, [config, interceptors === null || interceptors === void 0 ? void 0 : interceptors.request, interceptors === null || interceptors === void 0 ? void 0 : interceptors.response]);
     var onlineHandler = function () {
         setIsOnline(true);
     };
@@ -43,6 +43,8 @@ var HttpProvider = function (_a) {
     };
     (0, react_1.useEffect)(function () {
         initialize();
+    }, [initialize]);
+    (0, react_1.useEffect)(function () {
         window.addEventListener('online', onlineHandler);
         window.addEventListener('offline', offlineHandler);
         return function () {
@@ -50,9 +52,7 @@ var HttpProvider = function (_a) {
             window.removeEventListener('offline', offlineHandler);
         };
     }, []);
-    return (react_1.default.createElement(exports.HttpContext.Provider, { value: { instance: instance, networkStatus: isOnline ? 'online' : 'offline' } },
-        react_1.default.createElement("p", null, "Hello to the world"),
-        children));
+    return (react_1.default.createElement(exports.HttpContext.Provider, { value: { instance: instance, networkStatus: isOnline ? 'online' : 'offline' } }, children));
 };
 exports.default = HttpProvider;
 //# sourceMappingURL=context.js.map

@@ -9,7 +9,7 @@ var useQuery = function (url, config) {
     var _b = (0, react_1.useState)({}), data = _b[0], setData = _b[1];
     var _c = (0, react_1.useState)(false), loading = _c[0], setLoading = _c[1];
     var _d = (0, react_1.useContext)(context_1.HttpContext), instance = _d.instance, networkStatus = _d.networkStatus;
-    var handle = function () {
+    var handle = (0, react_1.useCallback)(function () {
         setLoading(true);
         instance
             .request(tslib_1.__assign({ url: url, method: 'GET' }, config))
@@ -22,10 +22,10 @@ var useQuery = function (url, config) {
             .finally(function () {
             setLoading(false);
         });
-    };
+    }, [config, instance, url]);
     (0, react_1.useEffect)(function () {
         handle();
-    }, []);
+    }, [handle]);
     return { data: data, error: error, loading: loading, refetch: handle, networkStatus: networkStatus };
 };
 exports.useQuery = useQuery;
