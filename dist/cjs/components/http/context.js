@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HttpProvider = exports.HttpContext = void 0;
+exports.HttpContext = void 0;
 var tslib_1 = require("tslib");
 var react_1 = tslib_1.__importStar(require("react"));
 var axios_1 = tslib_1.__importDefault(require("axios"));
@@ -50,7 +50,9 @@ var HttpProvider = function (_a) {
             window.removeEventListener('offline', offlineHandler);
         };
     }, []);
-    return (react_1.default.createElement(exports.HttpContext.Provider, { value: { instance: instance, networkStatus: isOnline ? 'online' : 'offline' } }, children));
+    return (react_1.default.createElement(exports.HttpContext.Provider, { value: { instance: instance, networkStatus: isOnline ? 'online' : 'offline' } },
+        react_1.default.createElement("p", null, "Hello to the world"),
+        children));
 };
-exports.HttpProvider = HttpProvider;
+exports.default = HttpProvider;
 //# sourceMappingURL=context.js.map

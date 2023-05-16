@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios'
+import { ReactNode } from 'react'
 
 export type Config = {
   baseURL: string
@@ -6,8 +7,8 @@ export type Config = {
   headers?: object
 }
 
-export type Prop = {
-  children: React.ReactNode
+export type Props = {
+  children: ReactNode
   config: Config
   interceptors?: InterceptorProp
 }

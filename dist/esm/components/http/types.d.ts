@@ -1,12 +1,12 @@
-/// <reference types="react" />
 import { AxiosRequestConfig } from 'axios';
+import { ReactNode } from 'react';
 export type Config = {
     baseURL: string;
     timeout?: number;
     headers?: object;
 };
-export type Prop = {
-    children: React.ReactNode;
+export type Props = {
+    children: ReactNode;
     config: Config;
     interceptors?: InterceptorProp;
 };

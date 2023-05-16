@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { Prop } from './types'
+import { Props } from './types'
 import axios, { AxiosInstance } from 'axios'
 
 const defaultValue = {
@@ -9,7 +9,7 @@ const defaultValue = {
 
 export const HttpContext = createContext(defaultValue)
 
-export const HttpProvider = ({ children, config, interceptors }: Prop) => {
+const HttpProvider = ({ children, config, interceptors }: Props) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [instance, setInstance] = useState(() => defaultValue.instance)
 
@@ -65,7 +65,10 @@ export const HttpProvider = ({ children, config, interceptors }: Prop) => {
 
   return (
     <HttpContext.Provider value={{ instance, networkStatus: isOnline ? 'online' : 'offline' }}>
+      <p>Hello to the world</p>
       {children}
     </HttpContext.Provider>
   )
 }
+
+export default HttpProvider
