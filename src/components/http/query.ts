@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { HttpContext } from './context'
 import { MutationProp } from './types'
 
@@ -9,7 +9,7 @@ export const useQuery = (url: string, config: MutationProp) => {
 
   const { instance, networkStatus } = useContext(HttpContext)
 
-  const handle = () => {
+  const handle = useCallback(() => {
     setLoading(true)
 
     instance
@@ -27,11 +27,11 @@ export const useQuery = (url: string, config: MutationProp) => {
       .finally(() => {
         setLoading(false)
       })
-  }
+  }, [config, instance, url])
 
   useEffect(() => {
     handle()
-  }, [])
+  }, [handle])
 
   return { data, error, loading, refetch: handle, networkStatus } as const
 }

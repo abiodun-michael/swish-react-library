@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { Props } from './types'
 import axios, { AxiosInstance } from 'axios'
 
@@ -13,7 +13,7 @@ const HttpProvider = ({ children, config, interceptors }: Props) => {
   const [isOnline, setIsOnline] = useState(navigator.onLine)
   const [instance, setInstance] = useState(() => defaultValue.instance)
 
-  const initialize = () => {
+  const initialize = useCallback(() => {
     const axiosInstance = axios.create(config)
 
     axiosInstance.interceptors.request.use(
@@ -41,7 +41,7 @@ const HttpProvider = ({ children, config, interceptors }: Props) => {
     )
 
     setInstance(() => axiosInstance)
-  }
+  }, [config, interceptors?.request, interceptors?.response])
 
   const onlineHandler = () => {
     setIsOnline(true)
@@ -53,7 +53,9 @@ const HttpProvider = ({ children, config, interceptors }: Props) => {
 
   useEffect(() => {
     initialize()
+  }, [initialize])
 
+  useEffect(() => {
     window.addEventListener('online', onlineHandler)
     window.addEventListener('offline', offlineHandler)
 
