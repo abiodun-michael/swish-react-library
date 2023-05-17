@@ -6,21 +6,15 @@ export var useMutation = function (url, config) {
     var _b = useState({}), data = _b[0], setData = _b[1];
     var _c = useState(false), loading = _c[0], setLoading = _c[1];
     var _d = useContext(HttpContext), instance = _d.instance, networkStatus = _d.networkStatus;
-    var handle = function (variables) {
+    var handle = function (datas) {
         return new Promise(function (resolve, reject) {
             setLoading(true);
-            var variableData = {};
-            if (variables) {
-                variableData = variables;
-            }
-            else {
-                variableData = config.data;
-            }
+            var conf = __assign(__assign({}, config), { data: datas || (config === null || config === void 0 ? void 0 : config.variables) });
             instance
-                .request(__assign(__assign({ url: url, method: 'POST' }, config), { data: variableData }))
+                .request(__assign({ url: url, method: 'POST' }, conf))
                 .then(function (_a) {
                 var data = _a.data;
-                if (config.onCompleted !== undefined) {
+                if ((config === null || config === void 0 ? void 0 : config.onCompleted) !== undefined) {
                     config === null || config === void 0 ? void 0 : config.onCompleted(data);
                 }
                 resolve(data);
@@ -28,7 +22,7 @@ export var useMutation = function (url, config) {
             })
                 .catch(function (error) {
                 reject(error);
-                if (config.onError !== undefined) {
+                if ((config === null || config === void 0 ? void 0 : config.onError) !== undefined) {
                     config === null || config === void 0 ? void 0 : config.onError(error);
                 }
                 setError(error);

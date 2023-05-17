@@ -7,13 +7,14 @@ export type Config = {
 };
 export type Props = {
     children: ReactNode;
-    config: Config;
+    config?: Config;
     interceptors?: InterceptorProp;
 };
-export type MutationProp = MutationConfig & AxiosRequestConfig;
+export type MutationProp = AxiosRequestConfig & MutationConfig;
 export type MutationConfig = {
     onCompleted?: (payload: unknown) => void;
     onError?: (error: unknown) => void;
+    variables?: object;
 };
 type AxiosInterceptor = {
     onSuccess: (payload: unknown) => void;

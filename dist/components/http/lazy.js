@@ -9,25 +9,18 @@ export var useLazyQuery = function (url, config) {
     var handle = function (variables) {
         return new Promise(function (resolve, reject) {
             setLoading(true);
-            var variableData = {};
-            if (variables) {
-                variableData = variables;
-            }
-            else {
-                variableData = config.data;
-            }
             instance
-                .request(__assign(__assign({ url: url, method: 'GET' }, config), { data: variableData }))
+                .request(__assign(__assign({ url: url, method: 'GET' }, config), { data: variables || (config === null || config === void 0 ? void 0 : config.variables) }))
                 .then(function (response) {
                 setData(response === null || response === void 0 ? void 0 : response.data);
-                if (config.onCompleted !== undefined) {
+                if ((config === null || config === void 0 ? void 0 : config.onCompleted) !== undefined) {
                     config === null || config === void 0 ? void 0 : config.onCompleted(data);
                 }
                 resolve(response === null || response === void 0 ? void 0 : response.data);
             })
                 .catch(function (error) {
                 setError(error);
-                if (config.onError !== undefined) {
+                if ((config === null || config === void 0 ? void 0 : config.onError) !== undefined) {
                     config === null || config === void 0 ? void 0 : config.onError(error);
                 }
                 reject(error);

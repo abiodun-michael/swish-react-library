@@ -9,16 +9,17 @@ export const useMutation = (url: string, config?: MutationProp) => {
 
   const { instance, networkStatus } = useContext(HttpContext)
 
-  const handle = (variables?: unknown) => {
+  const handle = (datas?:any) => {
     return new Promise((resolve, reject) => {
       setLoading(true)
+
+      const conf = {...config, data: datas || config?.variables}
 
       instance
         .request({
           url,
           method: 'POST',
-          ...config,
-          data: variables || config?.variables
+          ...conf
         })
         .then(({ data }) => {
           if (config?.onCompleted !== undefined) {

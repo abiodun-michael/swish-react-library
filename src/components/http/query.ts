@@ -17,7 +17,7 @@ export const useQuery = (url: string, config?: MutationProp) => {
         url,
         method: 'GET',
         ...config,
-        data: config?.variables
+        data: config?.variables,
       })
       .then((response) => {
         setData(response?.data)

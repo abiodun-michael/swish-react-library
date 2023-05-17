@@ -18,7 +18,7 @@ export const useLazyQuery = (url: string, config?: MutationProp) => {
           url,
           method: 'GET',
           ...config,
-          data: variables || config?.variables
+          data: variables || config?.variables,
         })
         .then((response) => {
           setData(response?.data)

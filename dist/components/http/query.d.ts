@@ -1,5 +1,5 @@
 import { MutationProp } from './types';
-export declare const useQuery: (url: string, config: MutationProp) => {
+export declare const useQuery: (url: string, config?: MutationProp) => {
     readonly data: {};
     readonly error: null;
     readonly loading: boolean;
